@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Звіти з лабораторних робіт</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .lab-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+
+        .lab-button {
+            padding: 10px;
+            border: 2px solid #000;
+            border-radius: 15px;
+            cursor: pointer;
+            background: white;
+        }
+
+        .lab-button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .student-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .photo-placeholder {
+            border: 2px solid #000;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .left-menu {
+            width: 250px;
+            float: left;
+            position: relative;
+        }
+
+        .menu-item {
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #000;
+            border-radius: 20px;
+            cursor: pointer;
+            text-align: center;
+            position: relative;
+            background: white;
+        }
+
+        /* Стилі для підменю */
+        .submenu {
+            margin-left: 30px;
+        }
+
+        .submenu .menu-item {
+            position: relative;
+        }
+
+        /* Горизонтальна лінія до підменю */
+        .submenu .menu-item::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 50%;
+            width: 30px;
+            height: 2px;
+            background-color: #000;
+        }
+
+        .content-area {
+            margin-left: 270px;
+            border: 2px solid #000;
+            min-height: 400px;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .img_student{
+            width: 150px;
+            height: 170px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>ЗВІТИ З ЛАБОРАТОРНИХ РОБІТ</h1>
+        <h2>З ДИСЦИПЛІНИ «WEB-ОРІЄНТОВАНІ ТЕХНОЛОГІЇ.</h2>
+        <h2>ОСНОВИ FRONTEND та BACKEND РОЗРОБОК»</h2>
+    </div>
+
+    <div class="student-info">
+        <div>Студент групи ІС-23 Маток Вадим Артурович</div>
+        <div class="photo-placeholder"><img class="img_student" src="/images/photo_5267282677487234578_y.jpg" /></div>
+    </div>
+
+    <div class="lab-buttons">
+        <button class="lab-button">Лабораторна робота №1</button>
+        <button class="lab-button">Лабораторна робота №2</button>
+        <button class="lab-button">Лабораторна робота №3</button>
+        <button class="lab-button">Лабораторна робота №4</button>
+        <button class="lab-button">Лабораторна робота №5</button>
+        <button class="lab-button">Лабораторна робота №6</button>
+        <button class="lab-button">Лабораторна робота №7</button>
+        <button class="lab-button">Лабораторна робота №8</button>
+        <button class="lab-button">Лабораторна робота №9</button>
+    </div>
+
+    <div class="left-menu">
+        <div class="menu-item">Опис предметного середовища</div>
+        <div class="menu-item">Тема Мета Місце розташування лаби №1</div>
+        <div class="menu-item">СТРУКТУРА ДОКУМЕНТА</div>
+        <div class="submenu">
+            <div class="menu-item">HTML-код ТАБЛИЦЬ</div>
+            <div class="menu-item">HTML-код ФОРМИ</div>
+            <div class="menu-item">HTML-код ЗОБРАЖЕННЯ</div>
+        </div>
+        <div class="menu-item">ВИСНОВКИ</div>
+    </div>
+
+    <div class="content-area">
+        <h3>Оберіть розділ з меню зліва</h3>
+        <div id="content"></div>
+    </div>
+
+    <script>
+        const menuContent = {
+            'Опис предметного середовища': `
+                <h3>Опис предметного середовища</h3>
+                <p>Предметне середовище являє собою веб-систему для управління фітнес-клубом. 
+                    Система призначена для автоматизації процесу запису на тренування, 
+                    відстеження прогресу та комунікації з тренерами.
+                </p>
+                
+                <h4>Основні функції системи:</h4>
+                <ul>
+                    <li>Запис на тренування онлайн</li>
+                    <li>Керування розкладом тренувань для користувачів та тренерів</li>
+                    <li>Відстеження прогресу користувачів.</li>
+                    <li>Система оцінок та відгуків про тренерів та тренування</li>
+                    <li>Адаптивний веб-інтерфейс для доступу з різних пристроїв</li>
+                </ul>
+
+                <h4>Цільова аудиторія:</h4>
+                <ul>
+                    <li>Користувачі, які бажають покращити фізичну форму та слідкувати за своїм прогресом</li>
+                    <li>Тренери, які ведуть тренувальні заняття та керують розкладом</li>
+                    <li>Адміністрація клубу, яка обробляє реєстрації керує послугами</li>
+                </ul>
+
+                <p>Система розробляється з використанням сучасних веб-технологій та 
+                має зручний користувацький інтерфейс, адаптований для різних пристроїв.</p>
+            `,
+            'Тема Мета Місце розташування лаби №1': `
+                <h3>Тема, мета та місце розташування лабораторної роботи №1</h3>
+                
+                <h4>Тема:</h4>
+                <p>Розробка веб-системи для управління фітнес-клубом.</p>
+
+                <h4>Мета:</h4>
+                <p>Створення зручної та ефективної веб-системи, яка дозволить:</p>
+                <ul>
+                    <li>Автоматизувати процес реєстрації та запису на тренування</li>
+                    <li>Надати користувачам простий та інтуїтивний інтерфейс для вибору тренувань</li>
+                    <li>Оптимізувати роботу тренерів через систему управління розкладом</li>
+                    <li>Забезпечити користувачів можливістю відстеження прогресу</li>
+                    <li>Створити адаптивний веб-інтерфейс, доступний на різних пристроях</li>
+                </ul>
+
+                <h4>Місце розташування:</h4>
+                <p>Лабораторна робота №1 розміщена у репозиторії: <a href="https://github.com/Vadim112281/IS-23_appRECORD-MatokVadym-FIOT-2025">[посилання на репозиторій]</a></p>
+            `,
+            'СТРУКТУРА ДОКУМЕНТА': `
+                <h3>Структура документа</h3>
+                <p>В даній лабораторній роботі було створено HTML-документ з використанням різних елементів:</p>
+                <ul>
+                    <li>Таблиці для відображення структурованої інформації</li>
+                    <li>Форми для введення даних користувачем</li>
+                    <li>Зображення для візуального представлення контенту</li>
+                </ul>
+                <p>Кожен елемент виконує свою специфічну функцію в системі фітнес-клубу.</p>
+            `,
+            'HTML-код ТАБЛИЦЬ': `
+                <h3>HTML-код таблиць</h3>
+                <p>Приклад таблиці з розкладом тренувань:</p>
+                <table border="1" style="width: 100%; border-collapse: collapse;">
+                    <tr>
+                        <th>Назва тренування</th>
+                        <th>Тренер</th>
+                        <th>Час</th>
+                        <th>Місце проведення</th>
+                    </tr>
+                    <tr>
+                        <td>Йога</td>
+                        <td>Олександр Коваль</td>
+                        <td>08:00 - 09:00</td>
+                        <td>Зал №1</td>
+                    </tr>
+                    <tr>
+                        <td>Силове тренування</td>
+                        <td>Марія Іваненко</td>
+                        <td>10:00 - 11:00</td>
+                        <td>Зал №2</td>
+                    </tr>
+                    <tr>
+                        <td>Кардіо</td>
+                        <td>Андрій Петренко</td>
+                        <td>18:00 - 19:00</td>
+                        <td>Зал №3</td>
+                    </tr>
+                </table>
+                <pre><code>
+&lt;table border="1" style="width: 100%; border-collapse: collapse;"&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Назва тренування&lt;/th&gt;
+        &lt;th&gt;Тренер&lt;/th&gt;
+        &lt;th&gt;Час&lt;/th&gt;
+        &lt;th&gt;Місце проведення&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Йога&lt;/td&gt;
+        &lt;td&gt;Олександр Коваль&lt;/td&gt;
+        &lt;td&gt;08:00 - 09:00&lt;/td&gt;
+        &lt;td&gt;Зал №1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Силове тренування&lt;/td&gt;
+        &lt;td&gt;Марія Іваненко&lt;/td&gt;
+        &lt;td&gt;10:00 - 11:00&lt;/td&gt;
+        &lt;td&gt;Зал №2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Кардіо&lt;/td&gt;
+        &lt;td&gt;Андрій Петренко&lt;/td&gt;
+        &lt;td&gt;18:00 - 19:00&lt;/td&gt;
+        &lt;td&gt;Зал №3&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+                </code></pre>
+            `,
+            'HTML-код ФОРМИ': `
+                <h3>HTML-код форми</h3>
+                <p>Форма для запису на тренування:</p>
+                <form style="max-width: 500px;">
+                    <div style="margin-bottom: 15px;">
+                        <label for="name">Ім'я:</label><br>
+                        <input type="text" id="name" name="name" required style="width: 100%;">
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label for="phone">Телефон:</label><br>
+                        <input type="tel" id="phone" name="phone" required style="width: 100%;">
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label for="training-type">Тип тренування:</label><br>
+                        <select id="training-type" name="training-type" required style="width: 100%;">
+                            <option value="yoga">Йога</option>
+                            <option value="strength">Силове тренування</option>
+                            <option value="cardio">Кардіо</option>
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label for="date">Дата тренування:</label><br>
+                        <input type="date" id="date" name="date" required style="width: 100%;">
+                    </div>
+                    <button type="submit" style="padding: 10px 20px;">Записатися</button>
+                </form>
+                <pre><code>
+&lt;form&gt;
+    &lt;div&gt;
+        &lt;label for="name"&gt;Ім'я:&lt;/label&gt;&lt;br&gt;
+        &lt;input type="text" id="name" name="name" required&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;label for="phone"&gt;Телефон:&lt;/label&gt;&lt;br&gt;
+        &lt;input type="tel" id="phone" name="phone" required&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;label for="training-type"&gt;Тип тренування:&lt;/label&gt;&lt;br&gt;
+        &lt;select id="training-type" name="training-type" required&gt;
+            &lt;option value="yoga"&gt;Йога&lt;/option&gt;
+            &lt;option value="strength"&gt;Силове тренування&lt;/option&gt;
+            &lt;option value="cardio"&gt;Кардіо&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;label for="date"&gt;Дата тренування:&lt;/label&gt;&lt;br&gt;
+        &lt;input type="date" id="date" name="date" required&gt;
+    &lt;/div&gt;
+    &lt;button type="submit"&gt;Записатися&lt;/button&gt;
+&lt;/form&gt;
+                </code></pre>
+            `,
+            'HTML-код ЗОБРАЖЕННЯ': `
+                <h3>HTML-код зображення</h3>
+                <p>Приклад додавання зображення тренування:</p>
+                <img src="https://images.unsplash.com/photo-1599058917212-d706a34ef6d5" 
+                    alt="Тренування у фітнес-клубі" 
+                    style="max-width: 100%; height: auto; border-radius: 10px;">
+
+                <pre><code>
+                &lt;img src="path/to/training-image.jpg" 
+                    alt="Тренування у фітнес-клубі" 
+                    style="max-width: 100%; height: auto; border-radius: 10px;"&gt;
+                </code></pre>
+
+                <p>Атрибути зображення:</p>
+                <ul>
+                    <li><strong>src</strong> - шлях до файлу зображення (URL або локальний файл)</li>
+                    <li><strong>alt</strong> - альтернативний текст (опис для доступності та SEO)</li>
+                    <li><strong>style</strong> - CSS стилі для адаптивності</li>
+                    <li><strong>border-radius</strong> - заокруглені кути для покращеного вигляду</li>
+                </ul>
+            `,
+            'ВИСНОВКИ': `
+                <h3>Висновки</h3>
+                <p>В результаті виконання лабораторної роботи:</p>
+                <ul>
+                    <li>Створено базову структуру HTML-документа</li>
+                    <li>Реалізовано таблиці для відображення розкладу тренувань</li>
+                    <li>Розроблено форму для запису на тренування </li>
+                    <li>Додано зображення з відповідними атрибутами</li>
+                    <li>Застосовано стилі для покращення візуального представлення</li>
+                </ul>
+                <p>Всі компоненти успішно інтегровані в єдину систему для фітнес-клубу.</p>
+            `
+        };
+
+        document.querySelectorAll('.lab-button').forEach(button => {
+            button.addEventListener('click', function() {
+                alert('Ви обрали ' + this.textContent);
+            });
+        });
+
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const content = menuContent[this.textContent] || '<p>Вміст цього розділу ще не додано</p>';
+                document.getElementById('content').innerHTML = content;
+            });
+        });
+    </script>
+</body>
+</html>
