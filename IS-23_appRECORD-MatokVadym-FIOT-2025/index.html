@@ -9,12 +9,10 @@
             font-family: Arial, sans-serif;
             margin: 20px;
         }
-
         .header {
             text-align: center;
             margin-bottom: 20px;
         }
-
         .lab-buttons {
             display: flex;
             gap: 10px;
@@ -22,7 +20,6 @@
             margin-bottom: 30px;
             justify-content: center;
         }
-
         .lab-button {
             padding: 10px;
             border: 2px solid #000;
@@ -30,30 +27,25 @@
             cursor: pointer;
             background: white;
         }
-
         .lab-button:hover {
             background-color: #f0f0f0;
         }
-
         .student-info {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
         }
-
         .photo-placeholder {
             border: 2px solid #000;
             padding: 10px;
             border-radius: 10px;
         }
-
         .left-menu {
             width: 250px;
             float: left;
             position: relative;
         }
-
         .menu-item {
             padding: 10px;
             margin: 10px 0;
@@ -64,17 +56,12 @@
             position: relative;
             background: white;
         }
-
-        /* Стилі для підменю */
         .submenu {
             margin-left: 30px;
         }
-
         .submenu .menu-item {
             position: relative;
         }
-
-        /* Горизонтальна лінія до підменю */
         .submenu .menu-item::before {
             content: '';
             position: absolute;
@@ -84,7 +71,6 @@
             height: 2px;
             background-color: #000;
         }
-
         .content-area {
             margin-left: 270px;
             border: 2px solid #000;
@@ -92,7 +78,6 @@
             padding: 20px;
             border-radius: 10px;
         }
-
         .img_student{
             width: 150px;
             height: 170px;
@@ -105,75 +90,41 @@
         <h2>З ДИСЦИПЛІНИ «WEB-ОРІЄНТОВАНІ ТЕХНОЛОГІЇ.</h2>
         <h2>ОСНОВИ FRONTEND та BACKEND РОЗРОБОК»</h2>
     </div>
-
     <div class="student-info">
         <div>Студент групи ІС-23 Маток Вадим Артурович</div>
-        <div class="photo-placeholder"><img class="img_student" src="/images/photo_5267282677487234578_y.jpg" /></div>
+        <div class="photo-placeholder"><img class="img_student" src="../IS-23_appRECORD-MatokVadym-FIOT-2025/images/photo_5267282677487234578_y.jpg" /></div>
     </div>
-
     <div class="lab-buttons">
-        <button class="lab-button">Лабораторна робота №1</button>
-        <button class="lab-button">Лабораторна робота №2</button>
-        <button class="lab-button">Лабораторна робота №3</button>
-        <button class="lab-button">Лабораторна робота №4</button>
-        <button class="lab-button">Лабораторна робота №5</button>
-        <button class="lab-button">Лабораторна робота №6</button>
-        <button class="lab-button">Лабораторна робота №7</button>
-        <button class="lab-button">Лабораторна робота №8</button>
-        <button class="lab-button">Лабораторна робота №9</button>
+        <button class="lab-button" onclick="loadLabMenu(1)">Лабораторна робота №1</button>
+        <button class="lab-button" onclick="loadLabMenu(2)">Лабораторна робота №2</button>
     </div>
-
-    <div class="left-menu">
-        <div class="menu-item">Опис предметного середовища</div>
-        <div class="menu-item">Тема Мета Місце розташування лаби №1</div>
-        <div class="menu-item">СТРУКТУРА ДОКУМЕНТА</div>
-        <div class="submenu">
-            <div class="menu-item">HTML-код ТАБЛИЦЬ</div>
-            <div class="menu-item">HTML-код ФОРМИ</div>
-            <div class="menu-item">HTML-код ЗОБРАЖЕННЯ</div>
-        </div>
-        <div class="menu-item">ВИСНОВКИ</div>
-    </div>
-
-    <div class="content-area">
+    <div class="left-menu" id="left-menu"></div>
+    <div class="content-area" id="content">
         <h3>Оберіть розділ з меню зліва</h3>
-        <div id="content"></div>
     </div>
-
-    <script>
-        const menuContent = {
-            'Опис предметного середовища': `
-                <h3>Опис предметного середовища</h3>
+        const labMenus = {
+            1: `
+                <div class="menu-item" onclick="loadContent('Опис предметного середовища')">Опис предметного середовища</div>
+                <div class="menu-item" onclick="loadContent('Тема Мета Місце розташування лаби №1')">Тема Мета Місце розташування лаби №1</div>
+                <div class="menu-item" onclick="loadContent('СТРУКТУРА ДОКУМЕНТА')">СТРУКТУРА ДОКУМЕНТА</div>
+                <div class="submenu">
+                    <div class="menu-item" onclick="loadContent('HTML-код ТАБЛИЦЬ')">HTML-код ТАБЛИЦЬ</div>
+                    <div class="menu-item" onclick="loadContent('HTML-код ФОРМИ')">HTML-код ФОРМИ</div>
+                    <div class="menu-item" onclick="loadContent('HTML-код ЗОБРАЖЕННЯ')">HTML-код ЗОБРАЖЕННЯ</div>
+                </div>
+                <div class="menu-item" onclick="loadContent('ВИСНОВКИ')">ВИСНОВКИ</div>
+            `
+        };
+        
+        const contentData = {
+            'Опис предметного середовища': `<h3>Опис предметного середовища</h3>
                 <p>Предметне середовище являє собою веб-систему для управління фітнес-клубом. 
                     Система призначена для автоматизації процесу запису на тренування, 
                     відстеження прогресу та комунікації з тренерами.
-                </p>
-                
-                <h4>Основні функції системи:</h4>
-                <ul>
-                    <li>Запис на тренування онлайн</li>
-                    <li>Керування розкладом тренувань для користувачів та тренерів</li>
-                    <li>Відстеження прогресу користувачів.</li>
-                    <li>Система оцінок та відгуків про тренерів та тренування</li>
-                    <li>Адаптивний веб-інтерфейс для доступу з різних пристроїв</li>
-                </ul>
-
-                <h4>Цільова аудиторія:</h4>
-                <ul>
-                    <li>Користувачі, які бажають покращити фізичну форму та слідкувати за своїм прогресом</li>
-                    <li>Тренери, які ведуть тренувальні заняття та керують розкладом</li>
-                    <li>Адміністрація клубу, яка обробляє реєстрації керує послугами</li>
-                </ul>
-
-                <p>Система розробляється з використанням сучасних веб-технологій та 
-                має зручний користувацький інтерфейс, адаптований для різних пристроїв.</p>
-            `,
-            'Тема Мета Місце розташування лаби №1': `
-                <h3>Тема, мета та місце розташування лабораторної роботи №1</h3>
-                
+                </p>` ,
+            'Тема Мета Місце розташування лаби №1': `<h3>Тема, мета та місце розташування лабораторної роботи №1</h3>
                 <h4>Тема:</h4>
                 <p>Розробка веб-системи для управління фітнес-клубом.</p>
-
                 <h4>Мета:</h4>
                 <p>Створення зручної та ефективної веб-системи, яка дозволить:</p>
                 <ul>
@@ -183,22 +134,18 @@
                     <li>Забезпечити користувачів можливістю відстеження прогресу</li>
                     <li>Створити адаптивний веб-інтерфейс, доступний на різних пристроях</li>
                 </ul>
-
                 <h4>Місце розташування:</h4>
-                <p>Лабораторна робота №1 розміщена у репозиторії: <a href="https://github.com/Vadim112281/IS-23_appRECORD-MatokVadym-FIOT-2025">[посилання на репозиторій]</a></p>
-            `,
-            'СТРУКТУРА ДОКУМЕНТА': `
-                <h3>Структура документа</h3>
+                <p>Лабораторна робота №1 розміщена у репозиторії: <a href="https://github.com/Vadim112281/IS-23_appRECORD-MatokVadym-FIOT-2025">[посилання на репозиторій]</a></p>` ,
+
+            'СТРУКТУРА ДОКУМЕНТА': `<h3>Структура документа</h3>
                 <p>В даній лабораторній роботі було створено HTML-документ з використанням різних елементів:</p>
                 <ul>
                     <li>Таблиці для відображення структурованої інформації</li>
                     <li>Форми для введення даних користувачем</li>
                     <li>Зображення для візуального представлення контенту</li>
                 </ul>
-                <p>Кожен елемент виконує свою специфічну функцію в системі фітнес-клубу.</p>
-            `,
-            'HTML-код ТАБЛИЦЬ': `
-                <h3>HTML-код таблиць</h3>
+                <p>Кожен елемент виконує свою специфічну функцію в системі фітнес-клубу.</p>` ,
+            'HTML-код ТАБЛИЦЬ': `               <h3>HTML-код таблиць</h3>
                 <p>Приклад таблиці з розкладом тренувань:</p>
                 <table border="1" style="width: 100%; border-collapse: collapse;">
                     <tr>
@@ -253,10 +200,8 @@
         &lt;td&gt;Зал №3&lt;/td&gt;
     &lt;/tr&gt;
 &lt;/table&gt;
-                </code></pre>
-            `,
-            'HTML-код ФОРМИ': `
-                <h3>HTML-код форми</h3>
+                </code></pre>` ,
+            'HTML-код ФОРМИ': `<h3>HTML-код форми</h3>
                 <p>Форма для запису на тренування:</p>
                 <form style="max-width: 500px;">
                     <div style="margin-bottom: 15px;">
@@ -305,10 +250,8 @@
     &lt;/div&gt;
     &lt;button type="submit"&gt;Записатися&lt;/button&gt;
 &lt;/form&gt;
-                </code></pre>
-            `,
-            'HTML-код ЗОБРАЖЕННЯ': `
-                <h3>HTML-код зображення</h3>
+                </code></pre>` ,
+            'HTML-код ЗОБРАЖЕННЯ': `<h3>HTML-код зображення</h3>
                 <p>Приклад додавання зображення тренування:</p>
                 <img src="https://images.unsplash.com/photo-1599058917212-d706a34ef6d5" 
                     alt="Тренування у фітнес-клубі" 
@@ -326,10 +269,8 @@
                     <li><strong>alt</strong> - альтернативний текст (опис для доступності та SEO)</li>
                     <li><strong>style</strong> - CSS стилі для адаптивності</li>
                     <li><strong>border-radius</strong> - заокруглені кути для покращеного вигляду</li>
-                </ul>
-            `,
-            'ВИСНОВКИ': `
-                <h3>Висновки</h3>
+                </ul>` ,
+            'ВИСНОВКИ': `<h3>Висновки</h3>
                 <p>В результаті виконання лабораторної роботи:</p>
                 <ul>
                     <li>Створено базову структуру HTML-документа</li>
@@ -338,22 +279,656 @@
                     <li>Додано зображення з відповідними атрибутами</li>
                     <li>Застосовано стилі для покращення візуального представлення</li>
                 </ul>
-                <p>Всі компоненти успішно інтегровані в єдину систему для фітнес-клубу.</p>
+                <p>Всі компоненти успішно інтегровані в єдину систему для фітнес-клубу.</p>`
+        };
+        
+        function loadLabMenu(labNumber) {
+            document.getElementById('left-menu').innerHTML = labMenus[labNumber] || '<p>Меню ще не додано</p>';
+        }
+        
+        function loadContent(section) {
+            document.getElementById('content').innerHTML = contentData[section] || '<p>Вміст цього розділу ще не додано</p>';
+        }
+    </script> -->
+
+    <script>
+        const labMenus = {
+            1: `
+                <div class="menu-item" onclick="loadContent('Опис предметного середовища')">Опис предметного середовища</div>
+                <div class="menu-item" onclick="loadContent('Тема Мета Місце розташування лаби №1')">Тема Мета Місце розташування лаби №1</div>
+                <div class="menu-item" onclick="loadContent('СТРУКТУРА ДОКУМЕНТА')">СТРУКТУРА ДОКУМЕНТА</div>
+                <div class="submenu">
+                    <div class="menu-item" onclick="loadContent('HTML-код ТАБЛИЦЬ')">HTML-код ТАБЛИЦЬ</div>
+                    <div class="menu-item" onclick="loadContent('HTML-код ФОРМИ')">HTML-код ФОРМИ</div>
+                    <div class="menu-item" onclick="loadContent('HTML-код ЗОБРАЖЕННЯ')">HTML-код ЗОБРАЖЕННЯ</div>
+                </div>
+                <div class="menu-item" onclick="loadContent('ВИСНОВКИ')">ВИСНОВКИ</div>
+            `,
+            2: `
+                <div class="menu-item" onclick="loadContent('Тема, мета ЛР №2')">Тема, мета ЛР №2 Місце розташування сайту, звіту</div>
+                <div class="menu-item" onclick="loadContent('Способи підключення стилів')">Способи підключення стилів</div>
+                <div class="menu-item">СЕЛЕКТОРИ</div>
+                <div class="submenu">
+                    <div class="menu-item" onclick="loadContent('Селектори тегу')">Селектори тегу</div>
+                    <div class="menu-item" onclick="loadContent('Селектори класу')">Селектори класу</div>
+                    <div class="menu-item" onclick="loadContent('Селектори ідентифікаторів')">Селектори ідентифікаторів</div>
+                    <div class="menu-item" onclick="loadContent('Інші селектори')">Інші селектори</div>
+                </div>
+                <div class="menu-item" onclick="loadContent('CSS: Шрифти, текст, фон, таблиці')">CSS: Шрифти Текст Таблиці Фон Контур Списки CSS Просунутий</div>
+                <div class="menu-item" onclick="loadContent('Висновки до ЛР №2')">ВИСНОВКИ до ЛР №2</div>
+            `
+        };
+    
+        const contentData = {
+            // Лабораторна робота №1
+            'Опис предметного середовища': `<h3>Опис предметного середовища</h3>
+                <p>Предметне середовище являє собою веб-систему для управління фітнес-клубом. 
+                    Система призначена для автоматизації процесу запису на тренування, 
+                    відстеження прогресу та комунікації з тренерами.
+                </p>` ,
+            'Тема Мета Місце розташування лаби №1': `<h3>Тема, мета та місце розташування лабораторної роботи №1</h3>
+                <h4>Тема:</h4>
+                <p>Розробка веб-системи для управління фітнес-клубом.</p>
+                <h4>Мета:</h4>
+                <p>Створення зручної та ефективної веб-системи, яка дозволить:</p>
+                <ul>
+                    <li>Автоматизувати процес реєстрації та запису на тренування</li>
+                    <li>Надати користувачам простий та інтуїтивний інтерфейс для вибору тренувань</li>
+                    <li>Оптимізувати роботу тренерів через систему управління розкладом</li>
+                    <li>Забезпечити користувачів можливістю відстеження прогресу</li>
+                    <li>Створити адаптивний веб-інтерфейс, доступний на різних пристроях</li>
+                </ul>
+                <h4>Місце розташування:</h4>
+                <p>Лабораторна робота №1 розміщена у репозиторії: <a href="https://github.com/Vadim112281/IS-23_appRECORD-MatokVadym-FIOT-2025">[посилання на репозиторій]</a></p>` ,
+
+            'СТРУКТУРА ДОКУМЕНТА': `<h3>Структура документа</h3>
+                <p>В даній лабораторній роботі було створено HTML-документ з використанням різних елементів:</p>
+                <ul>
+                    <li>Таблиці для відображення структурованої інформації</li>
+                    <li>Форми для введення даних користувачем</li>
+                    <li>Зображення для візуального представлення контенту</li>
+                </ul>
+                <p>Кожен елемент виконує свою специфічну функцію в системі фітнес-клубу.</p>` ,
+            'HTML-код ТАБЛИЦЬ': `               <h3>HTML-код таблиць</h3>
+                <p>Приклад таблиці з розкладом тренувань:</p>
+                <table border="1" style="width: 100%; border-collapse: collapse;">
+                    <tr>
+                        <th>Назва тренування</th>
+                        <th>Тренер</th>
+                        <th>Час</th>
+                        <th>Місце проведення</th>
+                    </tr>
+                    <tr>
+                        <td>Йога</td>
+                        <td>Олександр Коваль</td>
+                        <td>08:00 - 09:00</td>
+                        <td>Зал №1</td>
+                    </tr>
+                    <tr>
+                        <td>Силове тренування</td>
+                        <td>Марія Іваненко</td>
+                        <td>10:00 - 11:00</td>
+                        <td>Зал №2</td>
+                    </tr>
+                    <tr>
+                        <td>Кардіо</td>
+                        <td>Андрій Петренко</td>
+                        <td>18:00 - 19:00</td>
+                        <td>Зал №3</td>
+                    </tr>
+                </table>
+                <pre><code>
+&lt;table border="1" style="width: 100%; border-collapse: collapse;"&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Назва тренування&lt;/th&gt;
+        &lt;th&gt;Тренер&lt;/th&gt;
+        &lt;th&gt;Час&lt;/th&gt;
+        &lt;th&gt;Місце проведення&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Йога&lt;/td&gt;
+        &lt;td&gt;Олександр Коваль&lt;/td&gt;
+        &lt;td&gt;08:00 - 09:00&lt;/td&gt;
+        &lt;td&gt;Зал №1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Силове тренування&lt;/td&gt;
+        &lt;td&gt;Марія Іваненко&lt;/td&gt;
+        &lt;td&gt;10:00 - 11:00&lt;/td&gt;
+        &lt;td&gt;Зал №2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Кардіо&lt;/td&gt;
+        &lt;td&gt;Андрій Петренко&lt;/td&gt;
+        &lt;td&gt;18:00 - 19:00&lt;/td&gt;
+        &lt;td&gt;Зал №3&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+                </code></pre>` ,
+            'HTML-код ФОРМИ': `<h3>HTML-код форми</h3>
+                <p>Форма для запису на тренування:</p>
+                <form style="max-width: 500px;">
+                    <div style="margin-bottom: 15px;">
+                        <label for="name">Ім'я:</label><br>
+                        <input type="text" id="name" name="name" required style="width: 100%;">
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label for="phone">Телефон:</label><br>
+                        <input type="tel" id="phone" name="phone" required style="width: 100%;">
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label for="training-type">Тип тренування:</label><br>
+                        <select id="training-type" name="training-type" required style="width: 100%;">
+                            <option value="yoga">Йога</option>
+                            <option value="strength">Силове тренування</option>
+                            <option value="cardio">Кардіо</option>
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label for="date">Дата тренування:</label><br>
+                        <input type="date" id="date" name="date" required style="width: 100%;">
+                    </div>
+                    <button type="submit" style="padding: 10px 20px;">Записатися</button>
+                </form>
+                <pre><code>
+&lt;form&gt;
+    &lt;div&gt;
+        &lt;label for="name"&gt;Ім'я:&lt;/label&gt;&lt;br&gt;
+        &lt;input type="text" id="name" name="name" required&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;label for="phone"&gt;Телефон:&lt;/label&gt;&lt;br&gt;
+        &lt;input type="tel" id="phone" name="phone" required&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;label for="training-type"&gt;Тип тренування:&lt;/label&gt;&lt;br&gt;
+        &lt;select id="training-type" name="training-type" required&gt;
+            &lt;option value="yoga"&gt;Йога&lt;/option&gt;
+            &lt;option value="strength"&gt;Силове тренування&lt;/option&gt;
+            &lt;option value="cardio"&gt;Кардіо&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;label for="date"&gt;Дата тренування:&lt;/label&gt;&lt;br&gt;
+        &lt;input type="date" id="date" name="date" required&gt;
+    &lt;/div&gt;
+    &lt;button type="submit"&gt;Записатися&lt;/button&gt;
+&lt;/form&gt;
+                </code></pre>` ,
+            'HTML-код ЗОБРАЖЕННЯ': `<h3>HTML-код зображення</h3>
+                <p>Приклад додавання зображення тренування:</p>
+                <img src="https://images.unsplash.com/photo-1599058917212-d706a34ef6d5" 
+                    alt="Тренування у фітнес-клубі" 
+                    style="max-width: 100%; height: auto; border-radius: 10px;">
+
+                <pre><code>
+                &lt;img src="path/to/training-image.jpg" 
+                    alt="Тренування у фітнес-клубі" 
+                    style="max-width: 100%; height: auto; border-radius: 10px;"&gt;
+                </code></pre>
+
+                <p>Атрибути зображення:</p>
+                <ul>
+                    <li><strong>src</strong> - шлях до файлу зображення (URL або локальний файл)</li>
+                    <li><strong>alt</strong> - альтернативний текст (опис для доступності та SEO)</li>
+                    <li><strong>style</strong> - CSS стилі для адаптивності</li>
+                    <li><strong>border-radius</strong> - заокруглені кути для покращеного вигляду</li>
+                </ul>` ,
+            'ВИСНОВКИ': `<h3>Висновки</h3>
+                <p>В результаті виконання лабораторної роботи:</p>
+                <ul>
+                    <li>Створено базову структуру HTML-документа</li>
+                    <li>Реалізовано таблиці для відображення розкладу тренувань</li>
+                    <li>Розроблено форму для запису на тренування </li>
+                    <li>Додано зображення з відповідними атрибутами</li>
+                    <li>Застосовано стилі для покращення візуального представлення</li>
+                </ul>
+                <p>Всі компоненти успішно інтегровані в єдину систему для фітнес-клубу.</p>`,
+
+            // Лабораторна робота №2
+            'Тема, мета ЛР №2': `<h3>Тема, мета ЛР №2</h3>
+                <h4>Тема:</h4>
+                <p>КАСКАДНІ ТАБЛИЦІ СТИЛІВ. СЕЛЕКТОРИ, ІДЕНТИФІКАТОРИ. СТИЛЬОВЕ ОФОРМЛЕННЯ ТЕКСТОВИХ ЕЛЕМЕНТІВ В HTML-ДОКУМЕНТАХ.</p>
+
+                <h4>Мета:</h4>  
+                <p>Придбати практичні навички роботи з:</p>
+                <ul>
+                    <li>Селекторами, ідентифікаторами та списками</li>
+                    <li>Різноманітними властивостями кольору і фону</li>
+                    <li>Зовнішніми та внутрішніми відступами</li>
+                    <li>Плаваючими елементами</li>
+                    <li>Оформленням текстових елементів</li>
+                </ul>`,
+            'Способи підключення стилів': `<h3>Способи підключення стилів</h3>
+
+            <p>Існує три основні способи підключення стилів до HTML-документа:</p>
+
+            <h4>1. Вбудовані (inline) стилі</h4>
+            <p>Стилі додаються безпосередньо в атрибут <code>style</code> конкретного елемента.</p>
+            <pre><code>&lt;p style="color: blue; font-size: 20px;"&gt;Це текст з вбудованими стилями&lt;/p&gt;</code></pre>
+
+            <h4>2. Внутрішні (internal) стилі</h4>
+            <p>Стилі прописуються всередині HTML-документа в блоці <code>&lt;style&gt;</code> у секції <code>&lt;head&gt;</code>.</p>
+            <pre><code>&lt;style&gt;
+        p {
+            color: red;
+            font-size: 18px;
+        }
+&lt;/style&gt;
+            </code></pre>
+
+            <h4>3. Зовнішні (external) стилі</h4>
+            <p>Окремий CSS-файл підключається за допомогою тега <code>&lt;link&gt;</code>.</p>
+            <pre><code>&lt;link rel="stylesheet" href="styles.css"&gt;</code></pre>
+
+            <h4>Переваги зовнішніх стилів:</h4>
+            <ul>
+                <li>Використання одного стилю для всіх сторінок сайту.</li>
+                <li>Зменшення дублювання коду.</li>
+                <li>Краща підтримка та масштабованість.</li>
+            </ul>
+
+            <p>Використання каскадних таблиць стилів дозволяє зробити дизайн сайту гнучким та структурованим.</p>
+            `,
+            'Селектори тегу': `<h3>Селектори тегу</h3>
+
+            <p>Селектори тегу (або елемента) застосовуються до всіх елементів певного типу на сторінці.  
+            Вони дозволяють стилізувати HTML-елементи без необхідності вказувати класи або ідентифікатори.</p>
+
+            <h4>Приклад використання селектора тегу:</h4>
+            <pre><code>
+            /* CSS */
+            p {
+                color: blue;
+                font-size: 18px;
+                text-align: justify;
+            }
+            </code></pre>
+
+            <p>Цей код застосує синій колір, розмір шрифту 18px та вирівнювання тексту по ширині до всіх абзаців <code>&lt;p&gt;</code> на сторінці.</p>
+
+            <h4>Приклад HTML:</h4>
+            <pre><code>
+            &lt;p&gt;Це перший абзац, стилізований за допомогою селектора тегу.&lt;/p&gt;
+            &lt;p&gt;Це другий абзац, який також підпадає під цей селектор.&lt;/p&gt;
+            </code></pre>
+
+            <h4>Додатковий приклад: стилізація заголовків</h4>
+            <pre><code>
+            /* CSS */
+            h1 {
+                font-family: Arial, sans-serif;
+                color: darkred;
+                text-transform: uppercase;
+            }
+            </code></pre>
+
+            <p>Такий код змінює стиль усіх заголовків <code>&lt;h1&gt;</code> на сторінці.</p>
+
+            <h4>Висновки:</h4>
+            <ul>
+                <li>Селектори тегу зручні для глобального стилізування певних елементів.</li>
+                <li>Їх можна комбінувати з іншими селекторами для точнішого налаштування.</li>
+                <li>Якщо потрібно стилізувати лише окремі елементи, краще використовувати класи або ідентифікатори.</li>
+            </ul>
+            `,
+            'Селектори класу': `<h3>Селектори класу</h3>
+            <p>Селектори класу дозволяють застосовувати стилі до певних груп елементів, які мають однаковий клас.</p>
+
+            <h4>Синтаксис:</h4>
+            <pre><code>
+            /* CSS */
+            .назва_класу {
+                color: green;
+                font-size: 20px;
+                font-weight: bold;
+            }
+            </code></pre>
+
+            <h4>Приклад використання селектора класу:</h4>
+            <pre><code>
+            /* CSS */
+            .highlight {
+                background-color: yellow;
+                padding: 10px;
+                border-radius: 5px;
+            }
+            </code></pre>
+
+            <p>Цей код застосує жовтий фон, відступи та закруглені кути для всіх елементів з класом <code>highlight</code>.</p>
+
+            <h4>Приклад HTML:</h4>
+            <pre><code>
+            &lt;p class="highlight"&gt;Це виділений текст за допомогою селектора класу.&lt;/p&gt;
+            &lt;div class="highlight"&gt;Цей блок також має той самий клас і отримує такі ж стилі.&lt;/div&gt;
+            </code></pre>
+
+            <h4>Використання одного класу для кількох елементів:</h4>
+            <p>Селектори класу можна використовувати для багатьох елементів, що дозволяє легко змінювати їх стиль одночасно.</p>
+
+            <h4>Комбіновані селектори класу:</h4>
+            <pre><code>
+            /* CSS */
+            .button.primary {
+                background-color: blue;
+                color: white;
+                padding: 10px 15px;
+                border-radius: 5px;
+            }
+            </code></pre>
+
+            <h4>Приклад HTML:</h4>
+            <pre><code>
+            &lt;button class="button primary"&gt;Натисни мене&lt;/button&gt;
+            </code></pre>
+
+            <h4>Висновки:</h4>
+            <ul>
+                <li>Селектори класу дозволяють повторно використовувати стилі для кількох елементів.</li>
+                <li>Класи зручніші за селектори тегів, оскільки дають більше контролю.</li>
+                <li>Можна комбінувати класи для створення унікальних стилів.</li>
+            </ul>
+            `,
+            'Селектори ідентифікаторів': `<h3>Селектори ідентифікаторів</h3>
+
+            <p>Селектори ідентифікаторів (ID) використовуються для стилізації конкретного елемента.  
+            На відміну від класів, ідентифікатор повинен бути унікальним для кожного елемента на сторінці.</p>
+
+            <h4>Синтаксис:</h4>
+            <pre><code>
+            /* CSS */
+            #назва_ідентифікатора {
+                color: red;
+                font-size: 22px;
+                font-weight: bold;
+            }
+            </code></pre>
+
+            <h4>Приклад використання селектора ідентифікатора:</h4>
+            <pre><code>
+            /* CSS */
+            #header-title {
+                background-color: lightblue;
+                text-align: center;
+                padding: 15px;
+                border-radius: 10px;
+            }
+            </code></pre>
+
+            <h4>Приклад HTML:</h4>
+            <pre><code>
+            &lt;h1 id="header-title"&gt;Це заголовок з унікальним ідентифікатором&lt;/h1&gt;
+            </code></pre>
+
+            <h4>Особливості селекторів ідентифікаторів:</h4>
+            <ul>
+                <li>Використовується для стилізації конкретного елемента.</li>
+                <li>Позначається символом <code>#</code> у CSS.</li>
+                <li>Ідентифікатор має бути унікальним у межах одного документа.</li>
+            </ul>
+
+            <h4>Приклад використання ID для кнопки:</h4>
+            <pre><code>
+            /* CSS */
+            #submit-button {
+                background-color: green;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            </code></pre>
+
+            <h4>Приклад HTML:</h4>
+            <pre><code>
+            &lt;button id="submit-button"&gt;Надіслати&lt;/button&gt;
+            </code></pre>
+
+            <h4>Висновки:</h4>
+            <ul>
+                <li>Селектори ідентифікаторів зручні для унікальних елементів.</li>
+                <li>Краще використовувати <code>class</code> для багаторазового застосування стилів.</li>
+                <li>Не рекомендується застосовувати один і той самий ID до кількох елементів.</li>
+            </ul>
+            `,
+            'Інші селектори': `<h3>Інші селектори</h3>
+
+            <p>Окрім основних селекторів (тегу, класу та ідентифікатора), в CSS є багато інших селекторів,  
+            які дозволяють більш гнучко стилізувати елементи.</p>
+
+            <h4>1. Сусідні селектори</h4>
+            <p>Селектор <code>+</code> застосовується до елемента, який безпосередньо слідує після певного елемента.</p>
+            <pre><code>
+            /* CSS */
+            h1 + p {
+                color: blue;
+                font-size: 18px;
+            }
+            </code></pre>
+
+            <p>У цьому випадку стилі застосуються лише до першого <code>&lt;p&gt;</code> після <code>&lt;h1&gt;</code>.</p>
+
+            <h4>Приклад HTML:</h4>
+            <pre><code>
+            &lt;h1&gt;Заголовок&lt;/h1&gt;
+            &lt;p&gt;Цей абзац буде синім.&lt;/p&gt;
+            &lt;p&gt;Цей абзац залишиться стандартним.&lt;/p&gt;
+            </code></pre>
+
+            ---
+
+            <h4>2. Дочірні селектори</h4>
+            <p>Селектор <code>&gt;</code> застосовується тільки до прямих дочірніх елементів.</p>
+            <pre><code>
+            /* CSS */
+            div > p {
+                font-weight: bold;
+                color: green;
+            }
+            </code></pre>
+
+            <h4>Приклад HTML:</h4>
+            <pre><code>
+            &lt;div&gt;
+                &lt;p&gt;Цей текст буде жирним і зеленим.&lt;/p&gt;
+                &lt;span&gt;
+                    &lt;p&gt;Цей текст не зміниться, бо він вкладений у &lt;span&gt;.&lt;/p&gt;
+                &lt;/span&gt;
+            &lt;/div&gt;
+            </code></pre>
+
+            ---
+
+            <h4>3. Селектори атрибутів</h4>
+            <p>Дозволяють стилізувати елементи на основі їх атрибутів.</p>
+            <pre><code>
+            /* CSS */
+            input[type="text"] {
+                border: 2px solid red;
+            }
+            </code></pre>
+
+            <h4>Приклад HTML:</h4>
+            <pre><code>
+            &lt;input type="text" placeholder="Це текстове поле" /&gt;
+            &lt;input type="password" placeholder="Це поле пароля" /&gt;
+            </code></pre>
+
+            <p>Стиль застосовується тільки до полів введення типу <code>text</code>, а не <code>password</code>.</p>
+
+            ---
+
+            <h4>4. Універсальний селектор</h4>
+            <p>Символ <code>*</code> застосовується до всіх елементів на сторінці.</p>
+            <pre><code>
+            /* CSS */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            </code></pre>
+
+            <p>Такий код обнуляє всі відступи та встановлює <code>box-sizing</code> для всіх елементів.</p>
+
+            ---
+
+            <h4>Висновки:</h4>
+            <ul>
+                <li>Сусідні та дочірні селектори дозволяють задавати точні стилі для елементів.</li>
+                <li>Селектори атрибутів допомагають стилізувати елементи на основі їх характеристик.</li>
+                <li>Універсальний селектор змінює стилі всіх елементів.</li>
+            </ul>
+            `,
+            'CSS: Шрифти, текст, фон, таблиці': `<h3>CSS: Шрифти, текст, фон, таблиці</h3>
+
+            <p>У цьому розділі розглянемо основні CSS-властивості для роботи з текстом, шрифтами, фоном та таблицями.</p>
+
+            ---
+
+            <h4>1. Робота з шрифтами</h4>
+            <p>Властивості, які використовуються для налаштування шрифтів:</p>
+
+            <pre><code>
+            /* CSS */
+            p {
+                font-family: Arial, sans-serif;
+                font-size: 18px;
+                font-weight: bold;
+                font-style: italic;
+            }
+            </code></pre>
+
+            <h4>Приклад HTML:</h4>
+            <pre><code>
+            &lt;p&gt;Цей текст буде жирним, курсивним і в шрифті Arial.&lt;/p&gt;
+            </code></pre>
+
+            ---
+
+            <h4>2. Оформлення тексту</h4>
+            <p>Властивості для зміни стилю тексту:</p>
+
+            <pre><code>
+            /* CSS */
+            h1 {
+                text-align: center;
+                text-transform: uppercase;
+                text-decoration: underline;
+            }
+            </code></pre>
+
+            <h4>Приклад HTML:</h4>
+            <pre><code>
+            &lt;h1&gt;Цей заголовок буде по центру, з підкресленням і великими літерами.&lt;/h1&gt;
+            </code></pre>
+
+            ---
+
+            <h4>3. Фонові стилі</h4>
+            <p>Властивості для роботи з фоном:</p>
+
+            <pre><code>
+            /* CSS */
+            body {
+                background-color: lightblue;
+                background-image: url('background.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+            </code></pre>
+
+            <h4>Приклад HTML:</h4>
+            <pre><code>
+            &lt;body&gt;
+                &lt;p&gt;Ця сторінка має світло-блакитний фон або фонове зображення.&lt;/p&gt;
+            &lt;/body&gt;
+            </code></pre>
+
+            ---
+
+            <h4>4. Стилізація таблиць</h4>
+            <p>Основні CSS-властивості для оформлення таблиць:</p>
+
+            <pre><code>
+            /* CSS */
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            th, td {
+                border: 2px solid black;
+                padding: 10px;
+                text-align: center;
+            }
+
+            th {
+                background-color: grey;
+                color: white;
+            }
+            </code></pre>
+
+            <h4>Приклад HTML:</h4>
+            <pre><code>
+            &lt;table&gt;
+                &lt;tr&gt;
+                    &lt;th&gt;Назва&lt;/th&gt;
+                    &lt;th&gt;Опис&lt;/th&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;CSS&lt;/td&gt;
+                    &lt;td&gt;Мова стилізації веб-сторінок&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+            </code></pre>
+
+            ---
+
+            <h4>Висновки:</h4>
+            <ul>
+                <li>Шрифти в CSS можуть змінюватися за допомогою <code>font-family</code>, <code>font-size</code>, <code>font-weight</code>.</li>
+                <li>Текст можна вирівнювати, трансформувати та прикрашати.</li>
+                <li>Фонові стилі дозволяють змінювати колір, додавати зображення та керувати їх повторенням.</li>
+                <li>Таблиці можна стилізувати, змінюючи їхній вигляд за допомогою границь, кольору фону та відступів.</li>
+            </ul>
+            `,
+            'Висновки до ЛР №2': `<h3>Висновки до ЛР №2</h3>
+
+            <p>У ході виконання лабораторної роботи №2 були здобуті практичні навички роботи з CSS, зокрема:</p>
+
+            <ul>
+                <li>Вивчено основні способи підключення стилів: inline, internal, external.</li>
+                <li>Опрацьовано селектори тегу, класу, ідентифікаторів та інших селекторів (сусідні, дочірні, атрибутів, універсальні).</li>
+                <li>Застосовано різні властивості CSS для роботи з текстом, шрифтами, кольором фону та таблицями.</li>
+                <li>Реалізовано стильове оформлення веб-сторінки за допомогою каскадних таблиць стилів.</li>
+                <li>Зрозуміли принципи спадкування та каскадування CSS-стилів.</li>
+            </ul>
+
+            <h4>Основні висновки:</h4>
+            <ul>
+                <li>Каскадні таблиці стилів дозволяють створювати адаптивний, привабливий та структурований веб-дизайн.</li>
+                <li>Грамотне використання селекторів та правил CSS сприяє ефективному керуванню стилями.</li>
+                <li>Використання зовнішніх файлів стилів робить код чистішим та масштабованішим.</li>
+                <li>Практичне застосування CSS допомагає у створенні зручного та функціонального інтерфейсу для веб-додатків.</li>
+            </ul>
+
+            <p>Таким чином, лабораторна робота №2 допомогла зрозуміти основи стилізації веб-сторінок і їх структурування за допомогою CSS.</p>
             `
         };
 
-        document.querySelectorAll('.lab-button').forEach(button => {
-            button.addEventListener('click', function() {
-                alert('Ви обрали ' + this.textContent);
-            });
-        });
-
-        document.querySelectorAll('.menu-item').forEach(item => {
-            item.addEventListener('click', function() {
-                const content = menuContent[this.textContent] || '<p>Вміст цього розділу ще не додано</p>';
-                document.getElementById('content').innerHTML = content;
-            });
-        });
+        
+        function loadLabMenu(labNumber) {
+            document.getElementById('left-menu').innerHTML = labMenus[labNumber] || '<p>Меню ще не додано</p>';
+        }
+    
+        function loadContent(section) {
+            document.getElementById('content').innerHTML = contentData[section] || '<p>Вміст цього розділу ще не додано</p>';
+        }
     </script>
+    
+    
 </body>
 </html>
+
