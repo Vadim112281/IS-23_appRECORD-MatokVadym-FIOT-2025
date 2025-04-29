@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Лабораторна 5</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #c1e1c1;
+      padding: 20px;
+    }
+
+    .container {
+      margin-bottom: 40px;
+    }
+
+    .inputs, .resizer {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    input {
+      padding: 5px;
+    }
+
+    #square {
+      width: 100px;
+      height: 100px;
+      border: 2px dashed red;
+      background-color: transparent;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    .category-section ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .item {
+      margin-bottom: 10px;
+    }
+
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      width: 250px;
+      gap: 10px;
+    }
+
+    .widget {
+      background: #ffffff55;
+      padding: 10px;
+      border-radius: 10px;
+      width: fit-content;
+    }
+
+    #boxes div {
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Завдання 2 -->
+  <div class="container">
+    <h2>ЗАВДАННЯ 2</h2>
+    <div class="inputs">
+      <button id="swapBtn">SWAP ME</button>
+      <input type="text" id="input1" value="???" />
+      <input type="text" id="input2" value="!!!" />
+    </div>
+  </div>
+
+  <!-- Завдання 4 -->
+  <div class="container">
+    <h2>ЗАВДАННЯ 4</h2>
+    <div class="resizer">
+      <div id="square"></div>
+      <button id="decreaseBtn">Зменшити</button>
+      <button id="increaseBtn">Збільшити</button>
+    </div>
+  </div>
+
+  <!-- Завдання 6 -->
+  <div class="container">
+    <h2>ЗАВДАННЯ 6</h2>
+    <ul id="numberList">
+      <li>1</li>
+      <li>4</li>
+      <li>8</li>
+      <li>16</li>
+      <li>20</li>
+      <li>30</li>
+    </ul>
+    <button id="doubleBtn">Подвоїти</button>
+  </div>
+
+  <!-- Завдання 7 -->
+  <div class="container category-section">
+    <h2>ЗАВДАННЯ 7</h2>
+    <ul id="categories">
+      <li class="item">
+        <h2>Animals</h2>
+        <ul>
+          <li>Cat</li>
+          <li>Hamster</li>
+          <li>Horse</li>
+          <li>Parrot</li>
+        </ul>
+      </li>
+      <li class="item">
+        <h2>Products</h2>
+        <ul>
+          <li>Bread</li>
+          <li>Parsley</li>
+          <li>Cheese</li>
+        </ul>
+      </li>
+      <li class="item">
+        <h2>Technologies</h2>
+        <ul>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+          <li>React</li>
+          <li>Node.js</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Завдання 8 -->
+  <div class="container">
+    <h2>ЗАВДАННЯ 8</h2>
+    <form class="login-form">
+      <label>
+        Email
+        <input type="email" name="email" />
+      </label>
+      <label>
+        Password
+        <input type="password" name="password" />
+      </label>
+      <button type="submit">Log in</button>
+    </form>
+  </div>
+
+  <!-- Завдання 9 -->
+  <div class="container">
+    <h2>ЗАВДАННЯ 9</h2>
+    <div class="widget">
+      <p>Background color: <span class="color">--</span></p>
+      <button type="button" class="change-color">Change color</button>
+    </div>
+  </div>
+
+  <!-- Завдання 10 -->
+  <div class="container">
+    <h2>ЗАВДАННЯ 10</h2>
+    <div id="controls">
+      <input type="number" id="amount" min="1" max="100" step="1" />
+      <button type="button" data-create>Create</button>
+      <button type="button" data-destroy>Destroy</button>
+    </div>
+    <div id="boxes" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;"></div>
+  </div>
+
+  <script>
+    // Завдання 2
+    document.getElementById('swapBtn').addEventListener('click', function () {
+      const input1 = document.getElementById('input1');
+      const input2 = document.getElementById('input2');
+      const temp = input1.value;
+      input1.value = input2.value;
+      input2.value = temp;
+    });
+
+    // Завдання 4
+    const square = document.getElementById('square');
+    document.getElementById('decreaseBtn').addEventListener('click', () => {
+      const currentWidth = square.offsetWidth;
+      const currentHeight = square.offsetHeight;
+      square.style.width = Math.max(15, currentWidth - 15) + 'px';
+      square.style.height = Math.max(15, currentHeight - 15) + 'px';
+    });
+
+    document.getElementById('increaseBtn').addEventListener('click', () => {
+      const currentWidth = square.offsetWidth;
+      const currentHeight = square.offsetHeight;
+      square.style.width = currentWidth + 15 + 'px';
+      square.style.height = currentHeight + 15 + 'px';
+    });
+
+    // Завдання 6
+    document.getElementById('doubleBtn').addEventListener('click', () => {
+      const listItems = document.querySelectorAll('#numberList li');
+      listItems.forEach(li => {
+        const value = parseInt(li.textContent.trim(), 10);
+        if (!isNaN(value)) {
+          li.textContent = value * 2;
+        }
+      });
+    });
+
+    // Завдання 7
+    const categories = document.querySelectorAll('#categories .item');
+    console.log(`Number of categories: ${categories.length}`);
+    categories.forEach(category => {
+      const title = category.querySelector('h2').textContent;
+      const elementsCount = category.querySelectorAll('ul > li').length;
+      console.log(`Category: ${title}`);
+      console.log(`Elements: ${elementsCount}`);
+    });
+
+    // Завдання 8
+    const form = document.querySelector('.login-form');
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const email = form.elements.email.value.trim();
+      const password = form.elements.password.value.trim();
+
+      if (!email || !password) {
+        alert('All form fields must be filled in');
+        return;
+      }
+
+      const formData = {
+        email,
+        password
+      };
+
+      console.log(formData);
+      form.reset();
+    });
+
+    // Завдання 9
+    function getRandomHexColor() {
+      return `#${Math.floor(Math.random() * 16777215)
+        .toString(16)
+        .padStart(6, 0)}`;
+    }
+
+    document.querySelector('.change-color').addEventListener('click', () => {
+      const color = getRandomHexColor();
+      document.body.style.backgroundColor = color;
+      document.querySelector('.color').textContent = color;
+    });
+
+    // Завдання 10
+    const amountInput = document.getElementById('amount');
+    const createBtn = document.querySelector('[data-create]');
+    const destroyBtn = document.querySelector('[data-destroy]');
+    const boxesContainer = document.getElementById('boxes');
+
+    function createBoxes(amount) {
+      destroyBoxes();
+      const boxes = [];
+
+      for (let i = 0; i < amount; i++) {
+        const box = document.createElement('div');
+        const size = 30 + i * 10;
+        box.style.width = `${size}px`;
+        box.style.height = `${size}px`;
+        box.style.backgroundColor = getRandomHexColor();
+        box.style.border = '1px solid #333';
+        boxes.push(box);
+      }
+
+      boxesContainer.append(...boxes);
+    }
+
+    function destroyBoxes() {
+      boxesContainer.innerHTML = '';
+    }
+
+    createBtn.addEventListener('click', () => {
+      const amount = parseInt(amountInput.value, 10);
+      if (amount >= 1 && amount <= 100) {
+        createBoxes(amount);
+        amountInput.value = '';
+      } else {
+        alert('Please enter a number from 1 to 100');
+      }
+    });
+
+    destroyBtn.addEventListener('click', destroyBoxes);
+  </script>
+</body>
+</html>
